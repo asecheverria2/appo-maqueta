@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:appo_lab/src/pages/home_page.dart';
+//import 'package:appo_lab/src/pages/home_page.dart';
+import 'package:appo_lab/src/pages/menu_page.dart';
 import 'package:appo_lab/src/pages/usuario_register.dart';
 
 class Login extends StatefulWidget {
@@ -54,7 +55,7 @@ class _LoginState extends State<Login> {
   void _redirectUser() {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HomePage()));
+          MaterialPageRoute(builder: (context) => const MenuPage()));
     });
   }
 
