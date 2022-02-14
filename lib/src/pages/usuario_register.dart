@@ -1,13 +1,13 @@
 import 'package:appo_lab/src/models/user_model.dart';
-import 'package:appo_lab/src/models/usuario_data_model.dart';
+//import 'package:appo_lab/src/models/usuario_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:appo_lab/src/services/user_service.dart';
 import 'package:appo_lab/src/widgets/login_widget.dart';
 
-import 'package:appo_lab/src/utils/user_preferences.dart';
+//import 'package:appo_lab/src/utils/user_preferences.dart';
 
 class UsuarioRegister extends StatefulWidget {
-  UsuarioRegister({Key? key}) : super(key: key);
+  const UsuarioRegister({Key? key}) : super(key: key);
 
   @override
   _UsuarioRegisterState createState() => _UsuarioRegisterState();
@@ -203,7 +203,7 @@ class _UsuarioRegisterState extends State<UsuarioRegister> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => Login()));
+                                                builder: (context) => const Login()));
                                       });
                                     });
                                     }
@@ -243,7 +243,7 @@ class _UsuarioRegisterState extends State<UsuarioRegister> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Login(),
+                                  builder: (context) => const Login(),
                                 ));
                           },
                           shape: RoundedRectangleBorder(

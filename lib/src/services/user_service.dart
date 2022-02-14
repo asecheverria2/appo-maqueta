@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:appo_lab/src/models/user_model.dart';
-import 'package:appo_lab/src/models/usuario_data_model.dart';
+//import 'package:appo_lab/src/models/usuario_data_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {

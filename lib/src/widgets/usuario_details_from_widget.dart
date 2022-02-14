@@ -40,12 +40,7 @@ class _UsuarioDetailsFormWidgetState
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          width: size.width * .80,
-          decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                  width: 2.0, color: Theme.of(context).primaryColorDark)),
+          width: size.width * .90,
           child: Form(
               key: _formKey,
               child: Padding(
@@ -72,11 +67,17 @@ class _UsuarioDetailsFormWidgetState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(const Color(0xFF102639)),
+                            ),
                             onPressed: () => _selectImage(ImageSource.camera),
                             icon: const Icon(Icons.camera),
                             label: const Text("Cámara")
                             ),
                         ElevatedButton.icon(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(const Color(0xFF102639)),
+                            ),
                             onPressed: () => _selectImage(ImageSource.gallery),
                             icon: const Icon(Icons.image),
                             label: const Text("Galería")),
@@ -93,6 +94,7 @@ class _UsuarioDetailsFormWidgetState
                           return _validateObservacion(value!);
                         },
                         decoration: const InputDecoration(
+                            icon: Icon(Icons.person, color: Color(0xFF102639)),
                             labelText: "Nombre"),
                         maxLength: 50
                         ),
@@ -107,6 +109,7 @@ class _UsuarioDetailsFormWidgetState
                           return _validateObservacion(value!);
                         },
                         decoration: const InputDecoration(
+                            icon: Icon(Icons.phone, color: Color(0xFF102639)),
                             labelText: "Número de teléfono"),
                         maxLength: 50
                         ),
@@ -122,6 +125,7 @@ class _UsuarioDetailsFormWidgetState
                           return _validateObservacion(value!);
                         },
                         decoration: const InputDecoration(
+                            icon: Icon(Icons.person_pin_circle, color: Color(0xFF102639)),
                             labelText: "Dirección"),
                         maxLength: 50
                         ),
@@ -143,6 +147,9 @@ class _UsuarioDetailsFormWidgetState
                                     ));
                                   },
                                   label: const Text("Guardar"),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(const Color(0xFF102639)),
+                                  ),
                                   icon: const Icon(Icons.save)),
                             ),
                           )

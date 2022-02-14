@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                     debugShowCheckedModeBanner: false,
                     title: 'Flutter Demo',
                     theme: AppTheme.themeData(mainProvider.mode),
-                    home: Login(),
+                    home: const Login(),
                     ));
         }
         return const SizedBox.square(

@@ -6,7 +6,7 @@ import 'package:appo_lab/src/pages/menu_page.dart';
 import 'package:appo_lab/src/pages/usuario_register.dart';
 
 class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -230,7 +230,7 @@ class _LoginState extends State<Login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => UsuarioRegister(),
+                                  builder: (context) => const UsuarioRegister(),
                                 ));
                           },
                           shape: RoundedRectangleBorder(
@@ -264,14 +264,14 @@ class _LoginState extends State<Login> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(
+        title: const Text(
           'Ha ocurrido un Error',
           style: TextStyle(color: Colors.blue),
         ),
         content: Text(message),
         actions: <Widget>[
           FlatButton(
-            child: Text('Okay'),
+            child: const Text('Okay'),
             onPressed: () {
               Navigator.of(context).pop();
             },

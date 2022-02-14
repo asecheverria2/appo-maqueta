@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:appo_lab/src/utils/enums.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:appo_lab/src/pages/usuario_page.dart';
+import 'package:appo_lab/src/pages/cita_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0XFFFFFFFF),
+        backgroundColor: const Color(0XFFFFFFFF),
         elevation: 0,
         title: const Text(
           "Bienvenido!", 
@@ -34,7 +36,7 @@ class _MenuPageState extends State<MenuPage> {
               Spacer(),
               IconButton(
                 onPressed: null, 
-                icon: Icon(Icons.people_alt_rounded),
+                icon: Icon(Icons.person_rounded),
                 iconSize: 35,
                 )
             ],
@@ -43,7 +45,7 @@ class _MenuPageState extends State<MenuPage> {
             //color: Color(0xFF787878),
             /*width: double.infinity,
             height: double.infinity,*/
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             height: 550,
             width: 450,
             decoration: const BoxDecoration(
@@ -54,20 +56,175 @@ class _MenuPageState extends State<MenuPage> {
               )
             ),
             //alignment: Alignment.topCenter,
-            child: Title(
-              color: Colors.white,
-              child: const Text(
-                'Selecciona una opción',
-                style: TextStyle(
-                  fontSize: 17.0,
+            child: Column(
+              children: [
+                Title(
                   color: Colors.white,
+                  child: const Text(
+                    'Selecciona una opción',
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+                Card(
+                  margin: const EdgeInsets.fromLTRB(5, 30, 5, 5),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push<void>(
+                        context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                            const CitaPage(),
+                          ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                      SizedBox(
+                        height: 115.h,
+                        width: 115.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Image.asset('assets/images/cita-medica.png'),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(left: 75.0),
+                        child: Column(
+                          children: const [
+                            Text("Crear Cita",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Text("Aqui puede crear",
+                              style: TextStyle(
+                                fontSize: 17.0,
+                              ),
+                            ),
+                            Text("una nueva cita",
+                              style: TextStyle(
+                                fontSize: 17.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                    ),
+                    
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.fromLTRB(5, 30, 5, 5),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: InkWell(
+                    onTap: () {
+                      print("tapped");
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 115.h,
+                          width: 115.h,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Image.asset('assets/images/document.png'),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(left: 75.0),
+                          child: Column(
+                            children: const [
+                              Text("Ver Citas",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                              Text("agendadas",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                ),
+                              ),
+
+                              Text("Aqui puede ver",
+                                style: TextStyle(
+                                  fontSize: 17.0,
+                                ),
+                              ),
+                              Text("las citas agendas",
+                                style: TextStyle(
+                                  fontSize: 17.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.fromLTRB(5, 30, 5, 5),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push<void>(
+                        context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                            const UsuarioPage(),
+                          ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                      SizedBox(
+                        height: 115.h,
+                        width: 115.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Image.asset('assets/images/usuario.png'),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(left: 65.0),
+                        child: Column(
+                          children: const [
+                            Text("Editar Perfil",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Text("Aqui puede editar la",
+                              style: TextStyle(
+                                fontSize: 17.0,
+                              ),
+                            ),
+                            Text("infomación personal",
+                              style: TextStyle(
+                                fontSize: 17.0,
+                              ),
+                            ),
+                          ]
+                        ),
+                      ),
+                    ],
+                    ),
+                  ),
+                ),
+              ],
             ),
+
           ),
         ],
       ),
-      
     );
   }
 }

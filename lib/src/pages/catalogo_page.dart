@@ -74,7 +74,7 @@ class _CatalogoPageState extends State<CatalogoPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Login(),
+                      builder: (context) => const Login(),
                     ));
               },
               child: Text(

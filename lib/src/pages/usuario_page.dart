@@ -10,12 +10,14 @@ class UsuarioPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: 
-          UsuarioDetailsFormWidget(),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Perfil"),
+        backgroundColor: const Color(0xFF102639),
+      ),
+      body: 
+        const UsuarioDetailsFormWidget(),
+    );
         
-      );
   }
 }
