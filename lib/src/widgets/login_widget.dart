@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-//import 'package:appo_lab/src/pages/home_page.dart';
 import 'package:appo_lab/src/pages/menu_page.dart';
 import 'package:appo_lab/src/pages/usuario_register.dart';
 
@@ -71,185 +70,164 @@ class _LoginState extends State<Login> {
     double _heigth = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFf9f9f9),
+        elevation: 0,
+      ),
       key: _scaffoldKey,
         body: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(
-              height: _heigth * 0.4,
-              width: _width,
-              color: darkModePrefs == false ? Colors.green : Colors.black,
-              /*child: darkModePrefs == false
-                  ? Image.asset('assets/images/logo.png')
-                  : Image.asset('assets/images/logodark.png')*/),
-          Container(
-              color: darkModePrefs == false ? Colors.green : Colors.black,
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: darkModePrefs == false
-                          ? Colors.white
-                          : Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30))),
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Title(
-                            color: Colors.black,
-                            child: Text(
-                              'Ingresar',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: darkModePrefs == false
-                                      ? Colors.black
-                                      : Colors.grey[400]),
-                            ),
-                          ),
-                        ),
-                        Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                style: const TextStyle(
-                                    fontSize: 17.0, color: Colors.orangeAccent),
-                                decoration: const InputDecoration(
-                                    icon: Icon(Icons.alternate_email),
-                                    labelText: 'Correo Electronico'),
-                                validator: (value) {
-                                  if (value!.isEmpty || !value.contains('@')) {
-                                    return 'Correo invalido';
-                                  }
-                                },
-                                onSaved: (value) {
-                                  _email = value.toString();
-                                },
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 12.0),
-                              ),
-                              Divider(
-                                color: darkModePrefs == false
-                                    ? Colors.white
-                                    : Colors.grey[850],
-                              ),
-                              Divider(
-                                color: darkModePrefs == false
-                                    ? Colors.white
-                                    : Colors.grey[850],
-                              ),
-                              TextFormField(
-                                obscureText: _obscureText,
-                                style: const TextStyle(
-                                    fontSize: 17.0, color: Colors.orangeAccent),
-                                decoration: InputDecoration(
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {
-                                        _obscureText = !_obscureText;
-                                      },
-                                      child: Icon(_obscureText
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                    ),
-                                    icon: const Icon(Icons.vpn_key),
-                                    labelText: 'Contraseña'),
-                                validator: (value) {
-                                  if (value!.isEmpty || value.length < 5) {
-                                    return 'Contraseña muy corta';
-                                  }
-                                },
-                                onSaved: (value) {
-                                  _password = value.toString();
-                                },
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 12.0),
-                              ),
-                              Divider(
-                                color: darkModePrefs == false
-                                    ? Colors.white
-                                    : Colors.grey[850],
-                              ),
-                              Divider(
-                                color: darkModePrefs == false
-                                    ? Colors.white
-                                    : Colors.grey[850],
-                              ),
-                              MaterialButton(
-                                minWidth: 200.0,
-                                height: 50.0,
-                                color: darkModePrefs == false
-                                    ? Colors.green
-                                    : Colors.tealAccent,
-                                child: Text(
-                                  'Iniciar Sesión',
-                                  style: TextStyle(
-                                      color: darkModePrefs == false
-                                          ? Colors.white
-                                          : Colors.black,
-                                      fontSize: 20.0),
-                                ),
-                                onPressed: () async {
-                                  _submit();
-                                },
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: darkModePrefs == false
-                              ? Colors.white
-                              : Colors.grey[850],
-                        ),
-                        Divider(
-                          color: darkModePrefs == false
-                              ? Colors.white
-                              : Colors.grey[850],
-                        ),
-                        MaterialButton(
-                          minWidth: 200.0,
-                          height: 50.0,
-                          color: darkModePrefs == false
-                              ? Colors.green
-                              : Colors.tealAccent,
-                          child: Text(
-                            'Registrarse',
-                            style: TextStyle(
-                                color: darkModePrefs == false
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 20.0),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const UsuarioRegister(),
-                                ));
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                        ),
-                        Divider(
-                          color: darkModePrefs == false
-                              ? Colors.white
-                              : Colors.grey[850],
-                        ),
-                        Divider(
-                          color: darkModePrefs == false
-                              ? Colors.white
-                              : Colors.grey[850],
-                        ),
-                      ],
+        child: Column(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: const EdgeInsets.only(left: 30.0, top: 20.0, bottom: 20.0),
+                  child: Title(
+                    color: Colors.black,
+                    child: const Text(
+                      'Iniciar sesión',
+                      style: TextStyle(
+                        fontSize: 25,
+                        
+                      ),
                     ),
-                  ))),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: const EdgeInsets.only(left: 30.0, bottom: 30.0),
+                  child: Text(
+                    'Bienvenido',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey[400]
+                    ),
+                  ),
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(left: 20.0, right: 25.0, bottom: 12.0),
+                        child: TextFormField(
+                          style: const TextStyle(
+                              fontSize: 17.0, color: Colors.orangeAccent),
+                          decoration: const InputDecoration(
+                            icon: Icon(Icons.email,
+                              color: Color(0xFF102639),
+                            ),
+                            labelText: 'Correo electrónico'
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty || !value.contains('@')) {
+                              return 'Correo invalido';
+                            }
+                          },
+                          onSaved: (value) {
+                            _email = value.toString();
+                          },
+                        ),
+                        
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(left: 20.0, right: 25.0, bottom: 25.0),
+                        child:TextFormField(
+                          obscureText: _obscureText,
+                          style: const TextStyle(
+                            fontSize: 17.0, color: Colors.orangeAccent),
+                          decoration: InputDecoration(
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  _obscureText = !_obscureText;
+                                },
+                                child: Icon(_obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
+                              icon: const Icon(Icons.lock,
+                                color: Color(0xFF102639)
+                              ),
+                              labelText: 'Contraseña'),
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 5) {
+                              return 'Contraseña muy corta';
+                            }
+                          },
+                          onSaved: (value) {
+                            _password = value.toString();
+                          },
+                        ),
+                      ), 
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(const Size(240.0, 50.0)),
+                    backgroundColor: MaterialStateProperty.all(const Color(0xFFefefef)),
+                  ),
+                  onPressed: () {
+                    print("Hola");
+                  },
+                  icon: const Icon(Icons.email, color: Colors.red),
+                  label: const Text("Ingresar desde Google",
+                    style: TextStyle(color: Color(0xFF727272),
+                      fontSize: 18.0
+                    ),
+                  )
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 22.0),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 220.0, bottom: 70.0),
+                  child: MaterialButton(
+                    minWidth: 60.0,
+                    height: 60.0,
+                    color: const Color(0xFF102639),
+                    child: const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      _submit();
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60.0),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 30.0),
+                  child: Row(
+                    children: [
+                      const Text("¿Nuevo miembro?",
+                        style: TextStyle(color: Color(0xFF727272))
+                      ),
+                      MaterialButton(
+                        height: 40,
+                        child: const Text("Inscríbete",
+                          style: TextStyle(color: Color(0xFF102639)),
+                        ),
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UsuarioRegister(),
+                            )
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
         ],
       ),
     ));
