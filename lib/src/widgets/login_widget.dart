@@ -152,7 +152,7 @@ class _LoginState extends State<Login> {
                       Container(
                         padding: const EdgeInsets.only(left: 20.0, right: 25.0, bottom: 25.0),
                         child:StreamBuilder(
-                          stream: bloc.emailStream,
+                          stream: bloc.passwordStream,
                           builder: (BuildContext context,
                                     AsyncSnapshot snapshot) =>
                           TextFormField(

@@ -2,6 +2,7 @@ import 'package:appo_lab/src/pages/menu_page.dart';
 //import 'package:appo_lab/src/pages/secondscreen.dart';
 import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,13 @@ import 'package:provider/provider.dart';
 import 'package:appo_lab/src/theme/main_theme.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-//import 'firebase_options.dart';
+import 'dart:developer' as developer;
 
 //import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  //print('Handling a background message ${message.messageId}');
+  developer.log('Handling a background message ${message.messageId}');
 }
 
 late AndroidNotificationChannel channel;
@@ -27,7 +28,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    //options: DefaultFirebaseOptions.currentPlatform,
+    options: const FirebaseOptions(
+      apiKey: 'AIzaSyAT3oW9nqeVRmGv-PoetVzZONVTdHYJ0dc',
+      appId: '1:450553040977:android:acaeda1abde1339f192870',
+      messagingSenderId: '450553040977',
+      projectId: 'appo-lab',
+    ),
   );
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -36,15 +42,17 @@ void main() async {
     channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications', // title
-      'This channel is used for important notifications.', // description
+      description: 'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
 
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
     await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       alert: true,
@@ -76,9 +84,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    FirebaseMessaging.instance.getInitialMessage().then((value) {
-      //print('An initial message event was published!');
-    });
+    FirebaseMessaging.instance
+      .getInitialMessage()
+      .then((RemoteMessage? value) => developer.log(value.toString())
+    );
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       //print('A new onMessage event was published!');
@@ -93,8 +102,8 @@ class _MyAppState extends State<MyApp> {
               android: AndroidNotificationDetails(
                 channel.id,
                 channel.name,
-                channel.description,
-                icon: 'web_hi_res_512',
+                channelDescription: channel.description,
+                icon: 'app_icon',
               ),
             ));
       }
@@ -103,8 +112,7 @@ class _MyAppState extends State<MyApp> {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      //print('A new onMessageOpenedApp event was published!');
-      //print(message);
+      developer.log('A new onMessageOpenedApp event was published!');
     });
   }
 
