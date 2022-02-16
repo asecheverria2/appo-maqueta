@@ -42,9 +42,7 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _selectedIndex,
           onTap: (value) {
             _selectedIndex = value;
-            setState(() {
-              print("cambio de estado");
-            });
+            setState(() {});
           },
           items: menuOptions
               .map((e) =>

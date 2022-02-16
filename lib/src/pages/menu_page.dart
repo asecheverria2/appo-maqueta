@@ -1,7 +1,10 @@
+import 'package:appo_lab/src/providers/main_provider.dart';
+import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/pages/usuario_page.dart';
 import 'package:appo_lab/src/pages/cita_page.dart';
+import 'package:provider/provider.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -11,7 +14,7 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  int _selectedIndex = 0;
+  //int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -20,6 +23,7 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = Provider.of<MainProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0XFFFFFFFF),
@@ -32,11 +36,19 @@ class _MenuPageState extends State<MenuPage> {
       body: Column(
         children: [
           Row(
-            children: const [
-              Spacer(),
+            children: [
+              const Spacer(),
               IconButton(
-                onPressed: null, 
-                icon: Icon(Icons.person_rounded),
+                onPressed: () {
+                  mainProvider.token = "";
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    )
+                  );
+                }, 
+                icon: const Icon(Icons.person_rounded),
                 iconSize: 35,
                 )
             ],
@@ -123,9 +135,7 @@ class _MenuPageState extends State<MenuPage> {
                   margin: const EdgeInsets.fromLTRB(5, 30, 5, 5),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: InkWell(
-                    onTap: () {
-                      print("tapped");
-                    },
+                    onTap: () {},
                     child: Row(
                       children: [
                         SizedBox(

@@ -47,7 +47,10 @@ dependencies:
   sqflite: ^2.0.1
   path_provider: ^2.0.8
   rxdart: ^0.27.3
+  jwt_decoder: ^2.0.1
   convex_bottom_bar: ^3.0.0
+  google_maps_flutter: ^2.1.1
+  splash_screen_view: ^3.0.0
 
   
 dev_dependencies:

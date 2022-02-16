@@ -29,7 +29,7 @@ class BackgroundPage {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Theme.of(context).accentColor.withAlpha(30)),
+          color: Theme.of(context).colorScheme.primary),
     );
 
     final circle_2 = Container(

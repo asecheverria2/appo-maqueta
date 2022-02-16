@@ -12,8 +12,12 @@ class UsuarioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Perfil"),
-        backgroundColor: const Color(0xFF102639),
+        title: const Text("Perfil", 
+          style: TextStyle(color: Color(0xFF102639))
+        ),
+        backgroundColor: const Color(0xFFf9f9f9),
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
       body: 
         const UsuarioDetailsFormWidget(),

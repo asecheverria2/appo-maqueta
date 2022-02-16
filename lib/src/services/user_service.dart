@@ -15,8 +15,8 @@ class UserService {
       if (resp.body.isEmpty) return null;
       return json.decode(resp.body);
     } on Exception catch (e) {
-      print("Exception $e");
-      return null;
+      //print("Exception $e");
+      return e;
     }
   }
   //login 
@@ -32,15 +32,15 @@ class UserService {
           await http.post(uri, headers: _headers, body: json.encode(authData));
       if (resp.body.isEmpty) return null;
       if(resp.statusCode == 200) {
-        print(resp.body);
+        //print(resp.body);
       }else{
-        print(resp.body);
+        //print(resp.body);
         
       }
       return json.decode(resp.body);
     } on Exception catch (e) {
-      print("Exception $e");
-      return null;
+      //print("Exception $e");
+      return e;
     }
   }
 }
