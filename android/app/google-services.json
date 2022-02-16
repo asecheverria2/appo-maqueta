@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "450553040977",
+    "project_id": "appo-lab",
+    "storage_bucket": "appo-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450553040977:android:acaeda1abde1339f192870",
+        "android_client_info": {
+          "package_name": "com.example.appo_lab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450553040977-84r4qhd2e09e7g7ctvj4t2jmuuhrshjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3oW9nqeVRmGv-PoetVzZONVTdHYJ0dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450553040977-84r4qhd2e09e7g7ctvj4t2jmuuhrshjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

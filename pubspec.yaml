@@ -51,6 +51,10 @@ dependencies:
   convex_bottom_bar: ^3.0.0
   google_maps_flutter: ^2.1.1
   splash_screen_view: ^3.0.0
+  firebase_core: ^1.12.0
+  firebase_messaging: ^11.2.6
+  flutter_local_notifications: ^8.1.1+2
+  firebase_core_dart: ^0.0.5
 
   
 dev_dependencies:
