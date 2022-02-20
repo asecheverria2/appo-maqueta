@@ -2,7 +2,6 @@ import 'package:appo_lab/src/pages/menu_page.dart';
 //import 'package:appo_lab/src/pages/secondscreen.dart';
 import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

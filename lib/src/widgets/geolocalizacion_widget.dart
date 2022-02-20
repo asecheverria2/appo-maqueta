@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:appo_lab/src/models/lab_model.dart';
+import 'package:appo_lab/src/services/lab_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -7,10 +9,22 @@ class GeoWidget extends StatefulWidget {
   const GeoWidget({Key? key}) : super(key: key);
 
   @override
-  State<GeoWidget> createState() => _GeoWidgetState();
+  
+  _GeoWidgetState createState() => _GeoWidgetState();
 }
 
 class _GeoWidgetState extends State<GeoWidget> {
+
+  final LaboratorioService _apiService = LaboratorioService();
+  List<Laboratorio> _catalogo = [];
+
+  Set<Marker> _lab = Set<Marker>(); 
+  
+  @override
+  void initState() {
+    super.initState();
+    _downloadContent();
+  }
 
   final Completer<GoogleMapController> _controller = Completer();
 
@@ -28,6 +42,13 @@ class _GeoWidgetState extends State<GeoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    /*Set<Marker> _lab = _catalogo!
+      .map<Marker>((e){
+      Laboratorio model = e;
+      LatLng(model.latitude ?? -0.935198, model.longitude ?? -78.616465);
+      return Marker(markerId: MarkerId(model.id!));
+    }).toSet();*/
+
     return Scaffold(
       body: Column(
         children: [
@@ -39,7 +60,9 @@ class _GeoWidgetState extends State<GeoWidget> {
               initialCameraPosition: _kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
                 _controller.complete(controller);
+                _addMarker();
               },
+              markers: _lab,
             ),
           ),
           Container(
@@ -220,6 +243,28 @@ class _GeoWidgetState extends State<GeoWidget> {
         icon: const Icon(Icons.directions_boat),
       ),*/
     );
+  }
+  Future<void> _addMarker() async {
+     GoogleMapController controller = await _controller.future;
+    _catalogo.forEach((element) { 
+      setState(() {
+        _lab.add(
+          Marker(
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
+            markerId: MarkerId(element.id.toString()),
+            infoWindow: InfoWindow(title: element.name),
+            position: LatLng(element.latitude!.toDouble(), element.longitude!.toDouble()),
+          ),
+        );
+      });
+      }); 
+    
+  }
+  _downloadContent(){
+    _apiService.getLaboratorio().then((value) {
+      _catalogo = value;
+      setState(() {});
+      });
   }
   /*Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;

@@ -22,10 +22,10 @@ class Laboratorio {
     double? longitude;
 
     factory Laboratorio.fromJson(Map<String, dynamic> json) => Laboratorio(
-        id: json["id"],
-        name: json["name"],
-        latitude: json["latitude"].toDouble(),
-        longitude: json["longitude"].toDouble(),
+      id: json["id"],
+      name: json["name"],
+      latitude: json["latitude"].toDouble(),
+      longitude: json["longitude"].toDouble(),
     );
 
     Map<String, dynamic> toJson() => {
