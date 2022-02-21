@@ -1,8 +1,8 @@
-import 'package:appo_lab/src/providers/main_provider.dart';
+//import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/services/exam_services.dart';
 import 'package:flutter/material.dart';
 import 'package:appo_lab/src/models/exam_model.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 class TablaCard2 extends StatefulWidget {
   const TablaCard2({Key? key, required this.id}) : super(key: key);

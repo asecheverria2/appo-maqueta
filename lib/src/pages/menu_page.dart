@@ -1,3 +1,4 @@
+import 'package:appo_lab/src/pages/settings_page.dart';
 import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
@@ -33,24 +34,37 @@ class _MenuPageState extends State<MenuPage> {
           style: TextStyle(color: Color(0xFF787878)),),
         automaticallyImplyLeading: false,
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              onTap: () {
+                //mainProvider.token = "";
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingPage(),
+                  ),
+                );
+              },
+              leading: const Icon(Icons.settings),
+              title: const Text("Ajustes"),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Row(
             children: [
-              const Spacer(),
-              IconButton(
-                onPressed: () {
-                  mainProvider.token = "";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Login(),
-                    )
-                  );
-                }, 
-                icon: const Icon(Icons.person_rounded),
-                iconSize: 35,
-                )
+              Container (
+                padding: const EdgeInsets.only(top: 3, left:20, bottom: 20),
+                child: Text(mainProvider.nombre.toString(),
+                  style: const TextStyle(
+                    fontSize: 17
+                  ),
+                ),
+              )
             ],
           ),
           Container(
@@ -58,7 +72,7 @@ class _MenuPageState extends State<MenuPage> {
             /*width: double.infinity,
             height: double.infinity,*/
             padding: const EdgeInsets.all(20),
-            height: MediaQuery.of(context).size.height-131,
+            height: MediaQuery.of(context).size.height-123,
             width: 450,
             decoration: const BoxDecoration(
               color: Color(0xFF102639), 

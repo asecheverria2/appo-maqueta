@@ -64,8 +64,13 @@ class _LoginState extends State<Login> {
 
   void _redirectUser() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const MenuPage()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MenuPage(),
+        ),
+        (route) => false,
+      );
     });
   }
 
@@ -228,6 +233,7 @@ class _LoginState extends State<Login> {
                           onPressed: () async {
                             Map<String, dynamic> decodedResp = await _submit();
                             mainProvider.token = decodedResp['jwt'];
+                            mainProvider.nombre = decodedResp['user']["username"];
                             //print(decodedResp['jwt']);
                             //_submit();
                           },

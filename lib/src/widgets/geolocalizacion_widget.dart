@@ -68,8 +68,8 @@ class _GeoWidgetState extends State<GeoWidget> {
     : _catalogo2!.map((e) => TablaCard(model: e,)).toList();
     var nom = [    
       const Text("Seleccione un laboratorio",
-                  style: TextStyle(color: Colors.white),
-                ), 
+        style: TextStyle(color: Colors.white),
+      ), 
       const Padding(padding: EdgeInsets.only(bottom: 30.0)),
       Container(
                   padding: const EdgeInsets.only(left: 20, top: 3, right: 20),

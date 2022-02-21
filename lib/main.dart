@@ -1,6 +1,7 @@
 import 'package:appo_lab/src/pages/menu_page.dart';
 //import 'package:appo_lab/src/pages/secondscreen.dart';
-import 'package:appo_lab/src/widgets/login_widget.dart';
+//import 'package:appo_lab/src/widgets/login_widget.dart';
+import 'package:appo_lab/src/widgets/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -121,7 +122,7 @@ class _MyAppState extends State<MyApp> {
     mainProvider.getPreferences();
 
     Widget example1 = SplashScreenView(
-      navigateRoute: const Login(),
+      navigateRoute: OnboarWidget(),
       duration: 5000,
       imageSize: 200,
       imageSrc: "assets/images/microscopio.png",

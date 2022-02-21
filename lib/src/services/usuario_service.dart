@@ -7,7 +7,6 @@ import 'package:appo_lab/src/models/usuario_data_model.dart';
 
 class UsuarioService {
   UsuarioService();
-  //final String _rootUrl = "https://trifasic-backend-9bc1e.web.app/api/foto";
   final String _rootUrl = "https://appo-backend.herokuapp.com/datos-personales";
 
   Future<int> postUsuario(UsuarioDatos usuario) async {

@@ -11,6 +11,7 @@ class UsuarioDatos {
         this.nombre,
         this.numero,
         this.direccion,
+        this.users_permissions_user
     });
 
     String? id;
@@ -18,12 +19,14 @@ class UsuarioDatos {
     String? nombre;
     String? numero;
     String? direccion;
+    String? users_permissions_user;
 
     factory UsuarioDatos.fromJson(Map<String, dynamic> json) => UsuarioDatos(
         id: json["id"],
         img: json["img"],
         numero: json["numero"],
         direccion: json["direccion"],
+        users_permissions_user: json["users_permissions_user"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -31,5 +34,6 @@ class UsuarioDatos {
         "img": img,
         "numero": numero,
         "direccion": direccion,
+        "users_permissions_user": users_permissions_user
     };
 }

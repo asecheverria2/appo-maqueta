@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+//import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,7 +6,10 @@ class MainProvider extends ChangeNotifier {
   bool _mode = false;
   String _labo = "";
   String _token = "";
+  String _nombre = "";
+
   List<String> exams = [];
+
   int _index = 0;
   double suma =0;
 
@@ -24,18 +26,30 @@ class MainProvider extends ChangeNotifier {
     return _token;
   }
 
+  String get nombre {
+    return _nombre;
+  }
+
   int get index {
     return _index;
-  }
-  
-  set token(String newToken) {
-    updateToken(newToken);
-    _token = newToken;
-    notifyListeners();
   }
 
   String get labo {
     return _labo;
+  }
+
+  List<String> get examns {
+    return exams;
+  }
+
+  double get sum {
+    return sum;
+  }
+
+  set token(String newToken) {
+    updateToken(newToken);
+    _token = newToken;
+    notifyListeners();
   }
   
   set labo(String newLabo) {
@@ -44,18 +58,16 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> get examns {
-    return exams;
+  set nombre(String newNombre) {
+    updateNombre(newNombre);
+    _nombre = newNombre;
+    notifyListeners();
   }
   
   set examns(List<String> newExam) {
     updateExam(newExam);
     exams = newExam;
     notifyListeners();
-  }
-
-  double get sum {
-    return sum;
   }
   
   set sum(double newsum) {
@@ -75,6 +87,7 @@ class MainProvider extends ChangeNotifier {
       _mode = prefs.getBool("mode") ?? true;
       _token = prefs.getString("token") ?? "";
       _labo = prefs.getString("labo") ?? "";
+      _nombre = prefs.getString("nombre") ?? "";
       exams = prefs.getStringList("exam") ?? [];
       suma = prefs.getDouble("sum")?? 0;
       return true;
@@ -99,5 +112,10 @@ class MainProvider extends ChangeNotifier {
   Future<void> updateSum(double sum) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setDouble("sum", sum);
+  }
+
+  Future<void> updateNombre(String nombre) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("nombre", nombre);
   }
 }
