@@ -4,8 +4,7 @@ import 'dart:convert';
 
 class LaboratorioService {
   LaboratorioService();
-  final String _rootUrl = 
-      "https://appo-backend.herokuapp.com/labs";
+  final String _rootUrl = "https://appo-backend.herokuapp.com/labs";
 
   Future<List<Laboratorio>> getLaboratorio() async {
     List<Laboratorio> result = [];

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:appo_lab/src/models/lab_model.dart';
+import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/services/lab_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class GeoWidget extends StatefulWidget {
   const GeoWidget({Key? key}) : super(key: key);
@@ -42,6 +44,7 @@ class _GeoWidgetState extends State<GeoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = Provider.of<MainProvider>(context);
     /*Set<Marker> _lab = _catalogo!
       .map<Marker>((e){
       Laboratorio model = e;
@@ -56,13 +59,13 @@ class _GeoWidgetState extends State<GeoWidget> {
             width: MediaQuery.of(context).size.width,
             height: 400.0,
             child: GoogleMap(
+              markers: _lab,
               mapType: MapType.normal,
               initialCameraPosition: _kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
                 _controller.complete(controller);
                 _addMarker();
               },
-              markers: _lab,
             ),
           ),
           Container(
@@ -97,14 +100,8 @@ class _GeoWidgetState extends State<GeoWidget> {
                     children: [
                       InkWell(
                         onTap: () {
-                          /*Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                              const GeoWidget(),
-                            ),
-                          );*/
-                          //print("");
+                          mainProvider.labo = "61ba6f42c928815850b2012b";
+                          Navigator.pop(context);
                         },
                         child: Container(
                           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -142,14 +139,8 @@ class _GeoWidgetState extends State<GeoWidget> {
                       const Padding(padding: EdgeInsets.only(bottom: 6.0)),
                       InkWell(
                         onTap: () {
-                          /*Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                              const GeoWidget(),
-                            ),
-                          );*/
-                          //print("");
+                          mainProvider.labo = "6212b9bb89c2d100163e8767";
+                          Navigator.pop(context);
                         },
                         child: Container(
                           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -187,6 +178,8 @@ class _GeoWidgetState extends State<GeoWidget> {
                       const Padding(padding: EdgeInsets.only(bottom: 6.0)),
                       InkWell(
                         onTap: () {
+                          mainProvider.labo = "6212b9e689c2d100163e8768";
+                          Navigator.pop(context);
                           /*Navigator.push<void>(
                             context,
                             MaterialPageRoute<void>(
@@ -245,7 +238,9 @@ class _GeoWidgetState extends State<GeoWidget> {
     );
   }
   Future<void> _addMarker() async {
-     GoogleMapController controller = await _controller.future;
+    // ignore: unused_local_variable
+    GoogleMapController controller = await _controller.future;
+    // ignore: avoid_function_literals_in_foreach_calls
     _catalogo.forEach((element) { 
       setState(() {
         _lab.add(
@@ -257,14 +252,13 @@ class _GeoWidgetState extends State<GeoWidget> {
           ),
         );
       });
-      }); 
-    
+    }); 
   }
   _downloadContent(){
     _apiService.getLaboratorio().then((value) {
       _catalogo = value;
       setState(() {});
-      });
+    });
   }
   /*Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;

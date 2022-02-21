@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MainProvider extends ChangeNotifier {
   bool _mode = false;
+  String _labo = "";
   String _token = "";
   int _index = 0;
 
@@ -29,6 +30,16 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String get labo {
+    return _labo;
+  }
+  
+  set labo(String newLabo) {
+    updateLabo(newLabo);
+    _labo = newLabo;
+    notifyListeners();
+  }
+
   set index(int value) {
     _index = value;
     notifyListeners();
@@ -39,6 +50,7 @@ class MainProvider extends ChangeNotifier {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       _mode = prefs.getBool("mode") ?? true;
       _token = prefs.getString("token") ?? "";
+      _labo = prefs.getString("labo") ?? "";
       return true;
     } catch (e) {
       return false;
@@ -48,5 +60,10 @@ class MainProvider extends ChangeNotifier {
   Future<void> updateToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("token", token);
+  }
+
+  Future<void> updateLabo(String labo) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("labo", labo);
   }
 }

@@ -32,17 +32,22 @@ class TablaCard extends StatelessWidget {
         side: const BorderSide(color: Colors.white70, width: 1),
         borderRadius: BorderRadius.circular(25.0),
       ),
-      child: ListTile(
-        leading: CircleAvatar(backgroundImage: NetworkImage(url)),
-        title: Text(
-          model.name.toString(),
-          style: const TextStyle(fontSize: 18),
+      child: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: ListTile(
+          leading: CircleAvatar(backgroundImage: NetworkImage(url)),
+          title: Text(
+            model.name.toString(),
+            style: const TextStyle(fontSize: 18),
+          ),
+          
+          //subtitle: Text(model.description ?? ""),
+          trailing: model.price == null 
+                          ? null
+                          : prioridad,
         ),
-        
-        subtitle: Text(model.description ?? ""),
-        trailing: model.price == null 
-                        ? null
-                        : prioridad,
       ),
     );
   }

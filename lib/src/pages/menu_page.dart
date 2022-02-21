@@ -58,7 +58,7 @@ class _MenuPageState extends State<MenuPage> {
             /*width: double.infinity,
             height: double.infinity,*/
             padding: const EdgeInsets.all(20),
-            height: 550,
+            height: MediaQuery.of(context).size.height-131,
             width: 450,
             decoration: const BoxDecoration(
               color: Color(0xFF102639), 
@@ -103,8 +103,10 @@ class _MenuPageState extends State<MenuPage> {
                           child: Image.asset('assets/images/cita-medica.png'),
                         ),
                       ),
+                      const Spacer(),
                       Container(
                         alignment: Alignment.center,
+                        padding: const EdgeInsets.only(right: 40.0),
                         margin: const EdgeInsets.only(left: 75.0),
                         child: Column(
                           children: const [
@@ -146,8 +148,10 @@ class _MenuPageState extends State<MenuPage> {
                             child: Image.asset('assets/images/document.png'),
                           ),
                         ),
+                        const Spacer(),
                         Container(
                           alignment: Alignment.center,
+                          padding: const EdgeInsets.only(right: 39.5),
                           margin: const EdgeInsets.only(left: 75.0),
                           child: Column(
                             children: const [
@@ -202,8 +206,10 @@ class _MenuPageState extends State<MenuPage> {
                           child: Image.asset('assets/images/usuario.png'),
                         ),
                       ),
+                      const Spacer(),
                       Container(
                         alignment: Alignment.center,
+                        padding: const EdgeInsets.only(right: 25.5),
                         margin: const EdgeInsets.only(left: 65.0),
                         child: Column(
                           children: const [
