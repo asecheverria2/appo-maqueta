@@ -11,7 +11,7 @@ class TablaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
     
-
+     mainProvider.getPreferences();
     return InkWell(
       onTap: () {
         mainProvider.labo = model!.id.toString();

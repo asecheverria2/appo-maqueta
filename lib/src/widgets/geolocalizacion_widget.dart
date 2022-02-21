@@ -47,6 +47,7 @@ class _GeoWidgetState extends State<GeoWidget> {
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
+     mainProvider.getPreferences();
     /*Set<Marker> _lab = _catalogo!
       .map<Marker>((e){
       Laboratorio model = e;

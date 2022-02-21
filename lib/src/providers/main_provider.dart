@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -5,7 +7,9 @@ class MainProvider extends ChangeNotifier {
   bool _mode = false;
   String _labo = "";
   String _token = "";
+  List<String> exams = [];
   int _index = 0;
+  double suma =0;
 
   bool get mode {
     return _mode;
@@ -40,6 +44,26 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<String> get examns {
+    return exams;
+  }
+  
+  set examns(List<String> newExam) {
+    updateExam(newExam);
+    exams = newExam;
+    notifyListeners();
+  }
+
+  double get sum {
+    return sum;
+  }
+  
+  set sum(double newsum) {
+    updateSum(newsum);
+    suma += newsum;
+    notifyListeners();
+  }
+
   set index(int value) {
     _index = value;
     notifyListeners();
@@ -51,6 +75,8 @@ class MainProvider extends ChangeNotifier {
       _mode = prefs.getBool("mode") ?? true;
       _token = prefs.getString("token") ?? "";
       _labo = prefs.getString("labo") ?? "";
+      exams = prefs.getStringList("exam") ?? [];
+      suma = prefs.getDouble("sum")?? 0;
       return true;
     } catch (e) {
       return false;
@@ -65,5 +91,13 @@ class MainProvider extends ChangeNotifier {
   Future<void> updateLabo(String labo) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("labo", labo);
+  }
+  Future<void> updateExam(List<String> exam) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList("exam", exam);
+  }
+  Future<void> updateSum(double sum) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble("sum", sum);
   }
 }

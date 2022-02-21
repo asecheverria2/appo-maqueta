@@ -31,7 +31,7 @@ class _CatalogoPageState extends State<CatalogoPage> {
   Widget build(BuildContext context) {
     
     final mainProvider = Provider.of<MainProvider>(context, listen: true);
-    
+    mainProvider.getPreferences();
     var nom = [
       Container(
         alignment: Alignment.center,

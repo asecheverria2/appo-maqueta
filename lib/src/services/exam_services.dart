@@ -24,4 +24,19 @@ class ExamenesService {
       return result;
     }
   }
+
+  Future<Examenes> getExam(String id) async {
+    Examenes result = Examenes();
+
+    try {
+      var url = Uri.parse(_rootUrl+"/"+id);
+      final response = await http.get(url);
+      if(response.body.isEmpty) return Examenes();
+      dynamic listBody = json.decode(response.body);
+        final result = Examenes.fromJson(listBody);
+      return result;
+    }catch (ex) {
+      return result;
+    }
+  }
 }

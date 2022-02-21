@@ -1,5 +1,8 @@
+import 'package:appo_lab/src/pages/cita_page.dart';
+import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:appo_lab/src/models/exam_model.dart';
+import 'package:provider/provider.dart';
 
 class TablaCard extends StatelessWidget {
   const TablaCard({Key? key, required this.model}) : super(key: key);
@@ -8,7 +11,8 @@ class TablaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final url = model.img!.toString();
-
+    final mainProvider = Provider.of<MainProvider>(context);
+    mainProvider.getPreferences();
     final prioridad = Container(
         height: 32.0,
         width: 38.0,
@@ -34,6 +38,15 @@ class TablaCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
+          mainProvider.exams.add(model.id.toString());
+          mainProvider.suma=model.price!;
+          /*Navigator.push<void>(
+            context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) =>
+                const CitaPage(),
+              ),
+          );*/
           Navigator.pop(context);
         },
         child: ListTile(

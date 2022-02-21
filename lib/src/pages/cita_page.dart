@@ -1,9 +1,12 @@
 import 'package:appo_lab/src/pages/catalogo_page.dart';
 import 'package:appo_lab/src/pages/menu_page.dart';
+import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/widgets/date_widget.dart';
+import 'package:appo_lab/src/widgets/examen2_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/widgets/geolocalizacion_widget.dart';
+import 'package:provider/provider.dart';
 
 class CitaPage extends StatelessWidget {
   const CitaPage({Key? key})
@@ -11,6 +14,8 @@ class CitaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = Provider.of<MainProvider>(context);
+    mainProvider.getPreferences();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cita nueva", 
@@ -189,22 +194,29 @@ class CitaPage extends StatelessWidget {
                 color: Color(0xFF102639),
                 borderRadius: BorderRadius.all(Radius.circular(20))
               ),
-              /*child: Row(
-                children: [
-
-                ],
-              ),*/
-            ),
+              child: ListView(
+                children: 
+                  mainProvider.exams.map((e) => TablaCard2(id: e,)).toList())
+                
+              ),
+            
             Container(
               margin: const EdgeInsets.only(left: 20, bottom: 14),
               child: Row(
-                children: const[
-                   Text("Total Cotización",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
+                children: [
+                    const Text("Total Cotización",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                      ),
                     ),
-                  ),
+                    const Spacer(),
+                    Text(mainProvider.suma.toString(),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                      ),
+                    ),
                 ],
               ),
             ),
