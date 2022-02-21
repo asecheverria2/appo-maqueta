@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:appo_lab/src/models/lab_model.dart';
 import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/services/lab_services.dart';
+import 'package:appo_lab/src/widgets/lab_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class _GeoWidgetState extends State<GeoWidget> {
 
   final LaboratorioService _apiService = LaboratorioService();
   List<Laboratorio> _catalogo = [];
+  List<Laboratorio>? _catalogo2;
 
   Set<Marker> _lab = Set<Marker>(); 
   
@@ -51,13 +53,54 @@ class _GeoWidgetState extends State<GeoWidget> {
       LatLng(model.latitude ?? -0.935198, model.longitude ?? -78.616465);
       return Marker(markerId: MarkerId(model.id!));
     }).toSet();*/
+    
 
+    var tit = _catalogo2 == null ? 
+    [const Center(
+      child: SizedBox(
+        height: 50, width: 50.0, child: CircularProgressIndicator()),
+      ),]
+    : _catalogo2!.isEmpty ?
+      [const Center(
+        child: SizedBox(child : Text('No hay Laboratorios')),
+      ),]
+    : _catalogo2!.map((e) => TablaCard(model: e,)).toList();
+    var nom = [    
+      const Text("Seleccione un laboratorio",
+                  style: TextStyle(color: Colors.white),
+                ), 
+      const Padding(padding: EdgeInsets.only(bottom: 30.0)),
+      Container(
+                  padding: const EdgeInsets.only(left: 20, top: 3, right: 20),
+                  height: 207,
+                  width: 800,
+                  decoration: const BoxDecoration(
+                    color: Colors.white, 
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    )
+                  ),
+            child: _catalogo2 == null ? 
+              const Center(
+                child: SizedBox(
+                  height: 50, width: 50.0, child: CircularProgressIndicator()),
+                )
+              : _catalogo2!.isEmpty ?
+                const Center(
+                  child: SizedBox(child : Text('No hay Laboratorios')),
+                )
+              :ListView(
+                children:_catalogo2!.map((e) => TablaCard(model: e,)).toList(),
+                ))
+    ];
+    var newList = [...nom];
     return Scaffold(
       body: Column(
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 400.0,
+            height: MediaQuery.of(context).size.height-283,
             child: GoogleMap(
               markers: _lab,
               mapType: MapType.normal,
@@ -80,162 +123,12 @@ class _GeoWidgetState extends State<GeoWidget> {
               )
             ),
             child: Column(
-              children:  [
-                const Text("Seleccione un laboratorio",
-                  style: TextStyle(color: Colors.white),
-                ),
-                const Padding(padding: EdgeInsets.only(bottom: 30.0)),
-                Container(
-                  padding: const EdgeInsets.only(left: 20, top: 23, right: 20),
-                  height: 207,
-                  width: 800,
-                  decoration: const BoxDecoration(
-                    color: Colors.white, 
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    )
-                  ),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          mainProvider.labo = "61ba6f42c928815850b2012b";
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 0,left: 20, right: 20),
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFe298dd),
-                                Color(0xFFc076e2),
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              stops: [0.25, 0.90],
-                            ),
-                          ),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.storefront,
-                                color: Colors.white
-                              ),
-                              Text("    Laboratorio 1",
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(Icons.keyboard_arrow_right_outlined, color: Colors.white,)
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.only(bottom: 6.0)),
-                      InkWell(
-                        onTap: () {
-                          mainProvider.labo = "6212b9bb89c2d100163e8767";
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 0,left: 20, right: 20),
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFe298dd),
-                                Color(0xFFc076e2),
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              stops: [0.25, 0.90],
-                            ),
-                          ),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.storefront,
-                                color: Colors.white
-                              ),
-                              Text("    Laboratorio 2",
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(Icons.keyboard_arrow_right_outlined, color: Colors.white,)
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.only(bottom: 6.0)),
-                      InkWell(
-                        onTap: () {
-                          mainProvider.labo = "6212b9e689c2d100163e8768";
-                          Navigator.pop(context);
-                          /*Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                              const GeoWidget(),
-                            ),
-                          );*/
-                          //print("");
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 0,left: 20, right: 20),
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFe298dd),
-                                Color(0xFFc076e2),
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              stops: [0.25, 0.90],
-                            ),
-                          ),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.storefront,
-                                color: Colors.white
-                              ),
-                              Text("    Laboratorio 3",
-                                style: TextStyle(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(Icons.keyboard_arrow_right_outlined, color: Colors.white,)
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                children: newList 
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-      /*floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
-      ),*/
-    );
+          );
   }
   Future<void> _addMarker() async {
     // ignore: unused_local_variable
@@ -257,6 +150,7 @@ class _GeoWidgetState extends State<GeoWidget> {
   _downloadContent(){
     _apiService.getLaboratorio().then((value) {
       _catalogo = value;
+      _catalogo2=value;
       setState(() {});
     });
   }

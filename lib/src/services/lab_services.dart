@@ -23,4 +23,18 @@ class LaboratorioService {
       return result;
     }
   }
+  Future<Laboratorio> getLabo(String id) async {
+    Laboratorio result = Laboratorio();
+
+    try {
+      var url = Uri.parse(_rootUrl+"/"+id);
+      final response = await http.get(url);
+      if(response.body.isEmpty) return result;
+      dynamic listBody = json.decode(response.body);
+        result = Laboratorio.fromJson(listBody);
+      return result;
+    }catch (ex) {
+      return result;
+    }
+  }
 }
