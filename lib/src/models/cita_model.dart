@@ -11,25 +11,29 @@ String citaToJson(Cita data) => json.encode(data.toJson());
 class Cita {
     Cita({
         this.exams,
+        this.exams2,
         this.id,
         this.date,
         this.quotation,
         this.lab,
+        this.lab2,
         this.users_permissions_user
     });
 
     List<String>? exams;
+    List<Exam>? exams2;
     String? id;
     DateTime? date;
     double? quotation;
     String? lab;
+    Lab? lab2;
     String? users_permissions_user;
     factory Cita.fromJson(Map<String, dynamic> json) => Cita(
-        exams: json["exams"],
+        exams2: List<Exam>.from(json["exams"].map((x) => Exam.fromJson(x))),
         id: json["id"],
         date: DateTime.parse(json["date"]),
         quotation: json["quotation"],
-        lab: json["lab"],
+        lab2: Lab.fromJson(json["lab"]),
         users_permissions_user: json["users_permissions_user"],
     );
 

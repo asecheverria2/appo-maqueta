@@ -1,4 +1,5 @@
 import 'package:appo_lab/src/pages/settings_page.dart';
+import 'package:appo_lab/src/pages/ver_cita.dart';
 import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +158,15 @@ class _MenuPageState extends State<MenuPage> {
                   margin: const EdgeInsets.fromLTRB(5, 30, 5, 5),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push<void>(
+                        context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                            verCita(id: mainProvider.idUser,),
+                          ),
+                      );
+                      },
                     child: Row(
                       children: [
                         SizedBox(
