@@ -125,7 +125,7 @@ class CitaPage extends StatelessWidget {
                   Row(
                     children: const [
                       Icon(Icons.calendar_today),
-                      Text("    Fecha y Hora",
+                      Text("    Fecha",
                         style: TextStyle(
                           color: Colors.white
                         ),
@@ -196,9 +196,8 @@ class CitaPage extends StatelessWidget {
               ),
               child: ListView(
                 children: 
-                  mainProvider.exams.map((e) => TablaCard2(id: e,)).toList())
-                
-              ),
+                  mainProvider.exams.map((e) => TablaCard2(id: e)).toList())
+            ),
             
             Container(
               margin: const EdgeInsets.only(left: 20, bottom: 14),
@@ -211,17 +210,26 @@ class CitaPage extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Text(mainProvider.suma.toString(),
+                    Container(
+                      margin: const EdgeInsets.only(right: 30),
+                      child: Text("USD "+mainProvider.suma.toString(),
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 17,
                       ),
                     ),
+                    )
+                    
                 ],
               ),
             ),
             InkWell(
               onTap: () {
+                mainProvider.examns=[];
+                mainProvider.updateLabo("");
+                mainProvider.date="";
+                mainProvider.suma=0;
+                mainProvider.updateSum(0);
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(

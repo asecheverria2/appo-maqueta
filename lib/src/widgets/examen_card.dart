@@ -1,5 +1,7 @@
+import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:appo_lab/src/models/exam_model.dart';
+import 'package:provider/provider.dart';
 
 class TablaCard extends StatelessWidget {
   const TablaCard({Key? key, required this.model}) : super(key: key);
@@ -8,7 +10,8 @@ class TablaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final url = model.img!.toString();
-
+    final mainProvider = Provider.of<MainProvider>(context);
+    //mainProvider.getPreferences();
     final prioridad = Container(
         height: 32.0,
         width: 38.0,
@@ -34,6 +37,8 @@ class TablaCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
+          mainProvider.addexamns=model.id.toString();
+          mainProvider.sum=model.price!;
           Navigator.pop(context);
         },
         child: ListTile(

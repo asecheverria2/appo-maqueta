@@ -15,6 +15,7 @@ class Cita {
         required this.date,
         required this.quotation,
         required this.lab,
+        required this.users_permissions_user
     });
 
     List<Exam> exams;
@@ -22,13 +23,14 @@ class Cita {
     DateTime date;
     int quotation;
     Lab lab;
-
+    String? users_permissions_user;
     factory Cita.fromJson(Map<String, dynamic> json) => Cita(
         exams: List<Exam>.from(json["exams"].map((x) => Exam.fromJson(x))),
         id: json["id"],
         date: DateTime.parse(json["date"]),
         quotation: json["quotation"],
         lab: Lab.fromJson(json["lab"]),
+        users_permissions_user: json["users_permissions_user"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -37,6 +39,7 @@ class Cita {
         "date": date.toIso8601String(),
         "quotation": quotation,
         "lab": lab.toJson(),
+        "users_permissions_user": users_permissions_user
     };
 }
 

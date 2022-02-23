@@ -24,7 +24,8 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    final mainProvider = Provider.of<MainProvider>(context, listen: false);
+    final mainProvider = Provider.of<MainProvider>(context);
+    mainProvider.getPreferences();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0XFFFFFFFF),
@@ -99,6 +100,11 @@ class _MenuPageState extends State<MenuPage> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   child: InkWell(
                     onTap: () {
+                      mainProvider.examns=[];
+                      mainProvider.updateLabo("");
+                      mainProvider.date="";
+                      mainProvider.suma=0;
+                      mainProvider.updateSum(0);
                       Navigator.push<void>(
                         context,
                           MaterialPageRoute<void>(
