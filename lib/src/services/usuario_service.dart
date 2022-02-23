@@ -34,7 +34,7 @@ class UsuarioService {
       List<dynamic> listBody = json.decode(response.body);
       for(var item in listBody){
         final userData = UsuarioDatos.fromJson(item);
-        if(userData.users_permissions_user == idUser){
+        if(userData.user == idUser){
           result=userData;
           return result;
         }

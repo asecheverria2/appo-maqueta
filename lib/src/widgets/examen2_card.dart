@@ -56,7 +56,6 @@ class _TablaCard2State extends State<TablaCard2> {
         onTap: () {
           mainProvider.removeexamns=model.id.toString();
           mainProvider.res=model.price!;
-          print(mainProvider.exams);
         },
         child: ListTile(
           leading: CircleAvatar(backgroundImage: NetworkImage(url)),

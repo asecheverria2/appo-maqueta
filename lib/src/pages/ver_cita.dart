@@ -1,7 +1,6 @@
 import 'package:appo_lab/src/models/cita_model.dart';
 import 'package:appo_lab/src/services/cita_services.dart';
 import 'package:appo_lab/src/widgets/cita_card.dart';
-import 'package:appo_lab/src/widgets/examen_card.dart';
 //import 'package:appo_lab/src/widgets/login_widget.dart';
 //import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
@@ -11,14 +10,14 @@ import 'package:flutter/material.dart';
 
 //import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
-class verCita extends StatefulWidget {
-  const verCita({Key? key,required this.id}) : super(key: key);
+class VerCita extends StatefulWidget {
+  const VerCita({Key? key,required this.id}) : super(key: key);
   final String id;
   @override
-  _verCitaState createState() => _verCitaState();
+  _VerCitaState createState() => _VerCitaState();
 }
 
-class _verCitaState extends State<verCita> {
+class _VerCitaState extends State<VerCita> {
   final CitaService _apiService = CitaService();
   List<Cita>? _catalogo;
 

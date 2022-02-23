@@ -1,7 +1,5 @@
 import 'package:appo_lab/src/models/cita_model.dart';
-import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CitaCard extends StatelessWidget {
   const CitaCard({Key? key, required this.model}) : super(key: key);
@@ -9,7 +7,7 @@ class CitaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainProvider = Provider.of<MainProvider>(context);
+    //final mainProvider = Provider.of<MainProvider>(context);
     //mainProvider.getPreferences();
     final prioridad = Container(
         height: 32.0,

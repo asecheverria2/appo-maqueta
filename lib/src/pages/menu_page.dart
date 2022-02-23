@@ -1,7 +1,6 @@
 import 'package:appo_lab/src/pages/settings_page.dart';
 import 'package:appo_lab/src/pages/ver_cita.dart';
 import 'package:appo_lab/src/providers/main_provider.dart';
-import 'package:appo_lab/src/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/pages/usuario_page.dart';
@@ -163,7 +162,7 @@ class _MenuPageState extends State<MenuPage> {
                         context,
                           MaterialPageRoute<void>(
                             builder: (BuildContext context) =>
-                            verCita(id: mainProvider.idUser,),
+                            VerCita(id: mainProvider.idUser,),
                           ),
                       );
                       },

@@ -244,7 +244,7 @@ class _CitaPageState extends State<CitaPage> {
               onTap: () {
                 _cita.date=DateTime.parse(mainProvider.date) ;
                 _cita.quotation= mainProvider.suma;
-                _cita.users_permissions_user=mainProvider.idUser;
+                _cita.user=mainProvider.idUser;
                 _cita.lab=mainProvider.labo;
                 _cita.exams=mainProvider.examns;
                 mainProvider.examns=[];
@@ -287,6 +287,7 @@ class _CitaPageState extends State<CitaPage> {
   }
   _sendForm() async {
     int estado = await _citaService.postCita(_cita);
-    print(estado);
+    estado=estado;
+    //print(estado);
   }
 }

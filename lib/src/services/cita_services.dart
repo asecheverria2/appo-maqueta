@@ -34,7 +34,7 @@ class CitaService {
       List<dynamic> listBody = json.decode(response.body);
       for(var item in listBody){
         final cita = Cita.fromJson(item);
-        if (cita.users_permissions_user==id) {
+        if (cita.user==id) {
           result.add(cita);
         }
         

@@ -31,7 +31,12 @@ class _DatePageState extends State<DatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TableCalendar - Basics'),
+        title: const Text('Fecha',
+          style: TextStyle(color: Color(0xFF102639))
+        ),
+        backgroundColor: const Color(0xFFf9f9f9),
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
       body:Column(
         children: [

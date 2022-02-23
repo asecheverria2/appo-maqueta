@@ -56,16 +56,6 @@ class _GeoWidgetState extends State<GeoWidget> {
     }).toSet();*/
     
 
-    var tit = _catalogo2 == null ? 
-    [const Center(
-      child: SizedBox(
-        height: 50, width: 50.0, child: CircularProgressIndicator()),
-      ),]
-    : _catalogo2!.isEmpty ?
-      [const Center(
-        child: SizedBox(child : Text('No hay Laboratorios')),
-      ),]
-    : _catalogo2!.map((e) => TablaCard(model: e,)).toList();
     var nom = [    
       const Text("Seleccione un laboratorio",
         style: TextStyle(color: Colors.white),

@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:appo_lab/src/pages/home_page.dart';
-import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/models/usuario_data_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:appo_lab/src/services/usuario_service.dart';
-import 'package:provider/provider.dart';
 
 class UsuarioDetailsFormWidget extends StatefulWidget {
   const UsuarioDetailsFormWidget({Key? key})

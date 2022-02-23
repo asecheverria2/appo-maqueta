@@ -16,18 +16,16 @@ class OnboarWidget extends StatelessWidget {
             child: Image.asset('assets/images/consulta.png')
           ),
           const Padding(padding: EdgeInsets.only(bottom: 15.0)),
-          Container(
-              child: const Text('La salud de tu familia es prioridad nuestra!', 
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                ), 
-              )
-            ),
+          const Text('La salud de tu familia es prioridad nuestra!', 
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ), 
+          ),
           const Padding(padding: EdgeInsets.only(bottom: 15.0)),
-          Container(
+          const SizedBox(
             width: double.infinity,
-            child: const Text(
+            child: Text(
               'Agenda tus citas',
               style: TextStyle(
                 fontSize: 14,
