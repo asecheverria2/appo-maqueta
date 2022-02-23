@@ -20,8 +20,8 @@ class DatePage extends StatefulWidget {
 
 class _DatePageState extends State<DatePage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  DateTime _diaActual = DateTime.now();
+  DateTime? _diaSeleccionado;
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
 
   @override
@@ -43,22 +43,16 @@ class _DatePageState extends State<DatePage> {
           TableCalendar(
             firstDay: kFirstDay,
             lastDay: kLastDay,
-            focusedDay: _focusedDay,
+            focusedDay: _diaActual,
             calendarFormat: _calendarFormat,
             selectedDayPredicate: (day) {
-              // Use `selectedDayPredicate` to determine which day is currently selected.
-              // If this returns true, then `day` will be marked as selected.
-
-              // Using `isSameDay` is recommended to disregard
-              // the time-part of compared DateTime objects.
-              return isSameDay(_selectedDay, day);
+              return isSameDay(_diaSeleccionado, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
-              if (!isSameDay(_selectedDay, selectedDay)) {
-                // Call `setState()` when updating the selected day
+              if (!isSameDay(_diaSeleccionado, selectedDay)) {
                 setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
+                  _diaSeleccionado = selectedDay;
+                  _diaActual = focusedDay;
                 });
                 mainProvider.date= dateFormat.format(selectedDay);
               }
@@ -73,7 +67,7 @@ class _DatePageState extends State<DatePage> {
             },
             onPageChanged: (focusedDay) {
               // No need to call `setState()` here
-              _focusedDay = focusedDay;
+              _diaActual = focusedDay;
             },
           ),
           const Padding(padding: EdgeInsets.only(top: 150.0)),
