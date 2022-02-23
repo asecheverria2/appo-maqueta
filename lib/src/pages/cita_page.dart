@@ -1,6 +1,8 @@
+import 'package:appo_lab/src/models/cita_model.dart';
 import 'package:appo_lab/src/pages/catalogo_page.dart';
 import 'package:appo_lab/src/pages/menu_page.dart';
 import 'package:appo_lab/src/providers/main_provider.dart';
+import 'package:appo_lab/src/services/cita_services.dart';
 import 'package:appo_lab/src/widgets/date_widget.dart';
 import 'package:appo_lab/src/widgets/examen2_card.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +10,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/widgets/geolocalizacion_widget.dart';
 import 'package:provider/provider.dart';
 
-class CitaPage extends StatelessWidget {
+class CitaPage extends StatefulWidget {
   const CitaPage({Key? key})
       : super(key: key);
+
+  @override
+  State<CitaPage> createState() => _CitaPageState();
+}
+
+class _CitaPageState extends State<CitaPage> {
+  late Cita _cita;
+  final CitaService _citaService = CitaService();
+  @override
+    void initState() {
+      _cita = Cita();
+      //_usuario2 = UsuarioDatos();
+      super.initState();
+       //_downloadContent();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,11 +242,18 @@ class CitaPage extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                _cita.date=DateTime.parse(mainProvider.date) ;
+                _cita.quotation= mainProvider.suma;
+                _cita.users_permissions_user=mainProvider.idUser;
+                _cita.lab=mainProvider.labo;
+                _cita.exams=mainProvider.examns;
                 mainProvider.examns=[];
                 mainProvider.updateLabo("");
                 mainProvider.date="";
                 mainProvider.suma=0;
                 mainProvider.updateSum(0);
+
+                _sendForm();
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
@@ -260,5 +284,9 @@ class CitaPage extends StatelessWidget {
       ),
     );
         
+  }
+  _sendForm() async {
+    int estado = await _citaService.postCita(_cita);
+    print(estado);
   }
 }

@@ -10,35 +10,35 @@ String citaToJson(Cita data) => json.encode(data.toJson());
 
 class Cita {
     Cita({
-        required this.exams,
-        required this.id,
-        required this.date,
-        required this.quotation,
-        required this.lab,
-        required this.users_permissions_user
+        this.exams,
+        this.id,
+        this.date,
+        this.quotation,
+        this.lab,
+        this.users_permissions_user
     });
 
-    List<Exam> exams;
-    String id;
-    DateTime date;
-    int quotation;
-    Lab lab;
+    List<String>? exams;
+    String? id;
+    DateTime? date;
+    double? quotation;
+    String? lab;
     String? users_permissions_user;
     factory Cita.fromJson(Map<String, dynamic> json) => Cita(
-        exams: List<Exam>.from(json["exams"].map((x) => Exam.fromJson(x))),
+        exams: json["exams"],
         id: json["id"],
         date: DateTime.parse(json["date"]),
         quotation: json["quotation"],
-        lab: Lab.fromJson(json["lab"]),
+        lab: json["lab"],
         users_permissions_user: json["users_permissions_user"],
     );
 
     Map<String, dynamic> toJson() => {
-        "exams": List<dynamic>.from(exams.map((x) => x.toJson())),
-        "id": id,
-        "date": date.toIso8601String(),
+        "exams": exams,
+        //"id": id,
+        "date": date.toString(),
         "quotation": quotation,
-        "lab": lab.toJson(),
+        "lab": lab,
         "users_permissions_user": users_permissions_user
     };
 }

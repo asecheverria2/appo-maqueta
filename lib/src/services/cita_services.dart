@@ -24,4 +24,19 @@ class CitaService {
       return result;
     }
   }
+  Future<int> postCita(Cita cita) async {
+    try {
+      final Map<String, String> _headers = {"content-type": "application/json"};
+      String _citaBody = citaToJson(cita);
+      var url = Uri.parse(_rootUrl);
+      final response = await http.post(url, headers: _headers, body: _citaBody);
+      if (response.body.isEmpty) return 400;
+      //Map<String, dynamic> content = json.decode(response.body);
+      return response.statusCode;
+    } catch (ex) {
+      // ignore: avoid_print
+      print(ex);
+      return 500;
+    }
+  }
 }

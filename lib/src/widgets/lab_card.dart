@@ -16,6 +16,7 @@ class TablaCard extends StatelessWidget {
       onTap: () {
         mainProvider.labo = model!.id.toString();
         Navigator.pop(context);
+        print("lab "+mainProvider.labo);
       },
       child: Container(
         padding: const EdgeInsets.only(left: 10, right: 10),
