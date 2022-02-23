@@ -22,6 +22,7 @@ class _GeoWidgetState extends State<GeoWidget> {
   List<Laboratorio> _catalogo = [];
   List<Laboratorio>? _catalogo2;
 
+  // ignore: prefer_final_fields, prefer_collection_literals
   Set<Marker> _lab = Set<Marker>(); 
   
   @override

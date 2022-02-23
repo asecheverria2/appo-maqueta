@@ -242,25 +242,30 @@ class _CitaPageState extends State<CitaPage> {
             ),
             InkWell(
               onTap: () {
-                _cita.date=DateTime.parse(mainProvider.date) ;
-                _cita.quotation= mainProvider.suma;
-                _cita.user=mainProvider.idUser;
-                _cita.lab=mainProvider.labo;
-                _cita.exams=mainProvider.examns;
-                mainProvider.examns=[];
-                mainProvider.updateLabo("");
-                mainProvider.date="";
-                mainProvider.suma=0;
-                mainProvider.updateSum(0);
+                if (mainProvider.date==""||mainProvider.suma<=0||mainProvider.labo=="") {
+                  _showerrorDialog('Revise si ha ingresado bien Todos los datos\nNo se guardó la cita');
+                } else {
+                  _cita.date=DateTime.parse(mainProvider.date) ;
+                  _cita.quotation= mainProvider.suma;
+                  _cita.user=mainProvider.idUser;
+                  _cita.lab=mainProvider.labo;
+                  _cita.exams=mainProvider.examns;
+                  mainProvider.examns=[];
+                  mainProvider.updateLabo("");
+                  mainProvider.date="";
+                  mainProvider.suma=0;
+                  mainProvider.updateSum(0);
 
-                _sendForm();
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                    const MenuPage(),
-                  ),
-                );
+                  _sendForm();
+                  Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) =>
+                      const MenuPage(),
+                    ),
+                  );
+                }
+                
               },
               child: Container(
                 padding: const EdgeInsets.only(left: 10, right: 10),
@@ -289,5 +294,25 @@ class _CitaPageState extends State<CitaPage> {
     int estado = await _citaService.postCita(_cita);
     estado=estado;
     //print(estado);
+  }
+  void _showerrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text(
+          'Ha ocurrido un Error',
+          style: TextStyle(color: Colors.blue),
+        ),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Okay'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 }
