@@ -24,7 +24,27 @@ class UsuarioService {
       return 500;
     }
   }
+  Future<UsuarioDatos> getDatos(String idUser) async {
+    UsuarioDatos result;
 
+    try {
+      var url = Uri.parse(_rootUrl);
+      final response = await http.get(url);
+      if(response.body.isEmpty) return UsuarioDatos();
+      List<dynamic> listBody = json.decode(response.body);
+      for(var item in listBody){
+        final userData = UsuarioDatos.fromJson(item);
+        if(userData.users_permissions_user == idUser){
+          result=userData;
+          return result;
+        }
+        
+      }
+      return UsuarioDatos();
+    }catch (ex) {
+      return UsuarioDatos();
+    }
+  }
   Future<String> uploadImage(File image) async {
     final cloudinary = CloudinaryPublic('dnvtt9usn', 'ml_default', cache: false);
     try {

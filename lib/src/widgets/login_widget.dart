@@ -234,6 +234,7 @@ class _LoginState extends State<Login> {
                             Map<String, dynamic> decodedResp = await _submit();
                             mainProvider.token = decodedResp['jwt'];
                             mainProvider.nombre = decodedResp['user']["username"];
+                            mainProvider.idUser = decodedResp['user']["id"];
                             //print(decodedResp['jwt']);
                             //_submit();
                           },

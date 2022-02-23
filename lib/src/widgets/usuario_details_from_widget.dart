@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:appo_lab/src/pages/home_page.dart';
+import 'package:appo_lab/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:appo_lab/src/models/usuario_data_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:appo_lab/src/services/usuario_service.dart';
+import 'package:provider/provider.dart';
 
 class UsuarioDetailsFormWidget extends StatefulWidget {
   const UsuarioDetailsFormWidget({Key? key})
@@ -20,19 +22,28 @@ class _UsuarioDetailsFormWidgetState
     extends State<UsuarioDetailsFormWidget> {
   final _formKey = GlobalKey<FormState>();
   late UsuarioDatos _usuario;
+  //late UsuarioDatos _usuario2;
   File? _imagen;
   final ImagePicker _picker = ImagePicker();
   bool _onSaving = false;
   final UsuarioService _usuarioService = UsuarioService();
 
+  
   @override
   void initState() {
     _usuario = UsuarioDatos();
+    //_usuario2 = UsuarioDatos();
     super.initState();
+     //_downloadContent();
   }
 
   @override
   Widget build(BuildContext context) {
+    /*final mainProvider = Provider.of<MainProvider>(context);
+    _usuarioService.getDatos(mainProvider.idUser).then((value) {
+      late UsuarioDatos _usuario2 = value;
+      setState(() {});
+      });*/
     final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
         child: Column(
@@ -58,7 +69,8 @@ class _UsuarioDetailsFormWidgetState
                       width: 150.h,
                       child: Padding(
                         padding: const EdgeInsets.all(7.0),
-                        child: _imagen == null
+                        child: 
+                            _imagen == null
                             ? Image.asset('assets/images/usuarios.jpeg')
                             : Image.file(_imagen!),
                       ),
@@ -94,8 +106,10 @@ class _UsuarioDetailsFormWidgetState
                           return _validateObservacion(value!);
                         },
                         decoration: const InputDecoration(
-                            icon: Icon(Icons.person, color: Color(0xFF102639)),
-                            labelText: "Nombre"),
+                            icon:  Icon(Icons.person, color: Color(0xFF102639)),
+                            labelText:"Nombre",
+                          ),
+                            
                         maxLength: 50
                         ),
                     TextFormField(
@@ -199,4 +213,10 @@ class _UsuarioDetailsFormWidgetState
         ? "Debe ingresar un mensaje con al menos 25 caracteres"
         : null; //Validación se cumple al retorna null
   }
+  /*_downloadContent(){
+    _usuarioService.getDatos().then((value) {
+      _catalogo = value;
+      setState(() {});
+      });
+  }*/
 }

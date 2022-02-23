@@ -7,7 +7,7 @@ class MainProvider extends ChangeNotifier {
   String _labo = "";
   String _token = "";
   String _nombre = "";
-
+  String _idUser = "";
   List<String> exams = [];
 
   int _index = 0;
@@ -46,6 +46,10 @@ class MainProvider extends ChangeNotifier {
     return sum;
   }
 
+  String get idUser {
+    return _idUser;
+  }
+
   set token(String newToken) {
     updateToken(newToken);
     _token = newToken;
@@ -63,7 +67,11 @@ class MainProvider extends ChangeNotifier {
     _nombre = newNombre;
     notifyListeners();
   }
-  
+  set idUser(String newid) {
+    updateidUser(newid);
+    _idUser = newid;
+    notifyListeners();
+  }
   set examns(List<String> newExam) {
     updateExam(newExam);
     exams = newExam;
@@ -88,6 +96,7 @@ class MainProvider extends ChangeNotifier {
       _token = prefs.getString("token") ?? "";
       _labo = prefs.getString("labo") ?? "";
       _nombre = prefs.getString("nombre") ?? "";
+      _idUser = prefs.getString("idUser") ?? "";
       exams = prefs.getStringList("exam") ?? [];
       suma = prefs.getDouble("sum")?? 0;
       return true;
@@ -117,5 +126,9 @@ class MainProvider extends ChangeNotifier {
   Future<void> updateNombre(String nombre) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("nombre", nombre);
+  }
+  Future<void> updateidUser(String idUser) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("idUser", idUser);
   }
 }
